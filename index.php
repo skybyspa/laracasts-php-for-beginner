@@ -1,13 +1,17 @@
 <?php
 
 require 'functions.php';
+//require 'router.php';
 
-$uri = $_SERVER['REQUEST_URI'];
+// connect to MySQL database
+$dsn = "mysql:host=localhost;port=3306;dbname=laracasts_myapp;user=root;charset=utf8mb4";
 
-if ($uri === '/websites/demo/') {
-    require 'controllers/index.php';
-} else if ($uri === '/websites/demo/about') {
-    require 'controllers/about.php';
-} else if ($uri  === '/websites/demo/contact') {
-    require 'controllers/contact.php';
+$pdo = new PDO($dsn);
+
+$statement = $pdo->prepare("select * from posts");
+$statement->execute();
+$posts = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+foreach ($posts as $post) {
+    echo "<li>" . $post['title'] . "</li>";
 }
