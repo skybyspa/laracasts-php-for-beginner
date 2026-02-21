@@ -1,17 +1,20 @@
 <?php
 
 require 'functions.php';
+require 'Database.php';
 //require 'router.php';
 
-// connect to MySQL database
-$dsn = "mysql:host=localhost;port=3306;dbname=laracasts_myapp;user=root;charset=utf8mb4";
+$config = require('config.php');
 
-$pdo = new PDO($dsn);
+// connect to MySQL database and execute a query
+$db = new Database($config['database']);
 
-$statement = $pdo->prepare("select * from posts");
-$statement->execute();
-$posts = $statement->fetchAll(PDO::FETCH_ASSOC);
+$id = $_GET['id'];
+$query = "select * from posts where id = :id";
+$posts = $db->query($query, [':id' => $id])->fetch();
 
-foreach ($posts as $post) {
-    echo "<li>" . $post['title'] . "</li>";
-}
+dd($posts);
+
+//foreach ($posts as $post) {
+//    echo "<li>" . $post['title'] . "</li>";
+//}
