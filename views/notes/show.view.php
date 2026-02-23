@@ -9,11 +9,9 @@
         </p>
         <p class="text-white"> <?= htmlspecialchars($note['body']) ?></p>
 
-        <form class="mt-6" method="POST">
-            <input type="hidden" name="_method" value="DELETE">
-            <input type="hidden" name="id" value=" <?= $note['id'] ?> ">
-            <button class="text-sm text-red-300">Delete</button>
-        </form>
+        <footer class="mt-6">
+            <a href="/websites/demo/note/edit" class="text-gray-300 border border-current px-3 py-1 rounded">Edit</a>
+        </footer>
     </div>
 </main>
 
