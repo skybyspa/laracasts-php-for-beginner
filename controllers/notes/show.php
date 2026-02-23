@@ -1,0 +1,18 @@
+<?php
+
+$config = require base_path('config.php');
+//connect to MySQL database
+$db = new Database($config['database']);
+
+$currentUserId = 2;
+
+$note = $db->query('select * from notes where id = :id', [
+    'id' => $_GET['id']
+])->findOrFail();
+
+authorise($note['user_id'] == $currentUserId);
+
+view("notes/show.view.php", [
+    'heading' => 'Note',
+    'note' => $note
+]);
