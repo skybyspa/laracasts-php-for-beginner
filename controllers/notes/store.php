@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * Store is where the create form will submit. Stores/persists the note
+ */
+
 use Core\Database;
 use Core\Validator;
 use Core\App;

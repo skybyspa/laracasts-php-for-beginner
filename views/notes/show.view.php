@@ -10,7 +10,7 @@
         <p class="text-white"> <?= htmlspecialchars($note['body']) ?></p>
 
         <footer class="mt-6">
-            <a href="/websites/demo/note/edit" class="text-gray-300 border border-current px-3 py-1 rounded">Edit</a>
+            <a href="/websites/demo/note/edit?id=<?= $note['id'] ?>" class="text-sm/6 font-semibold text-white">Edit</a>
         </footer>
     </div>
 </main>

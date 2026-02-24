@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * Destroy is where the destroy form (in edit.view.php) will submit. Destroys a specific note
+ */
+
 use Core\App;
 use Core\Database;
 

@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * Show shows a specific resource (specific note)
+ */
+
 use Core\App;
 use Core\Database;
 

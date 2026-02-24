@@ -7,7 +7,7 @@
         <h1 class="text-white text-2xl font-bold">Sorry. Page Not Found.</h1>
 
         <p class="text-white mt-4">
-            <a href="/" class="text-blue underline">Go back home.</a>
+            <a href="/websites/demo/" class="text-blue underline">Go back home.</a>
         </p>
     </div>
 

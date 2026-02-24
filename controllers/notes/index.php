@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * Index shows all of a resource (all notes)
+ */
+
 use Core\App;
 use Core\Database;
 
