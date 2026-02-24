@@ -15,4 +15,5 @@ $router->patch('/websites/demo/note', 'controllers/notes/update.php');
 $router->get('/websites/demo/notes/create', 'controllers/notes/create.php');
 $router->post('/websites/demo/notes', 'controllers/notes/store.php');
 
-//$router->delete('/websites/demo/notes', 'controllers/notes/destroy.php');
+$router->get('/websites/demo/register', 'controllers/registration/create.php');
+$router->post('/websites/demo/register', 'controllers/registration/store.php');
