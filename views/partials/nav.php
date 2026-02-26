@@ -10,7 +10,9 @@
                         <!-- Current: "bg-gray-950/50 text-white", Default: "text-gray-300 hover:bg-white/5 hover:text-white" -->
                         <a href="/websites/demo/" class="<?= urlIs('/websites/demo/') ? "bg-gray-950/50 text-white": "text-gray-300 hover:bg-white/5 hover:text-white"?> rounded-md px-3 py-2 text-sm font-medium">Home</a>
                         <a href="/websites/demo/about" class="<?= urlIs('/websites/demo/about') ? "bg-gray-950/50 text-white": "text-gray-300 hover:bg-white/5 hover:text-white"?> rounded-md px-3 py-2 text-sm font-medium">About</a>
-                        <a href="/websites/demo/notes" class="<?= urlIs('/websites/demo/notes') ? "bg-gray-950/50 text-white": "text-gray-300 hover:bg-white/5 hover:text-white"?> rounded-md px-3 py-2 text-sm font-medium">Notes</a>
+                        <?php if ($_SESSION['user'] ?? false) : ?>
+                            <a href="/websites/demo/notes" class="<?= urlIs('/websites/demo/notes') ? "bg-gray-950/50 text-white": "text-gray-300 hover:bg-white/5 hover:text-white"?> rounded-md px-3 py-2 text-sm font-medium">Notes</a>
+                        <?php endif; ?>
                         <a href="/websites/demo/contact" class="<?= urlIs('/websites/demo/contact') ? "bg-gray-950/50 text-white": "text-gray-300 hover:bg-white/5 hover:text-white"?> rounded-md px-3 py-2 text-sm font-medium">Contact</a>
                     </div>
                 </div>
@@ -35,7 +37,8 @@
                                     <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
                                 </button>
                             <?php else : ?>
-                                <a href="/websites/demo/register" class="text-white">Register</a>
+                                <a href="/websites/demo/register" class="<?= urlIs('/websites/demo/register') ? "bg-gray-950/50 text-white": "text-gray-300 hover:bg-white/5 hover:text-white"?> rounded-md px-3 py-2 text-sm font-medium">Register</a>
+                                <a href="/websites/demo/login" class="<?= urlIs('/websites/demo/login') ? "bg-gray-950/50 text-white": "text-gray-300 hover:bg-white/5 hover:text-white"?> rounded-md px-3 py-2 text-sm font-medium">Login</a>
                             <?php endif; ?>
                         </div>
                         <div id="profile-menu" class="hidden absolute right-0 mt-2 w-48 rounded-md bg-gray-800 py-1 outline-1 -outline-offset-1 outline-white/10 z-50">
@@ -44,6 +47,16 @@
                             <a href="#" class="block px-4 py-2 text-sm text-gray-300 hover:bg-white/5">Sign out</a>
                         </div>
                     </div>
+                    <?php if ($_SESSION['user'] ?? false) : ?>
+                    <div class="ml-3">
+                        <form method="POST" action="/websites/demo/session">
+                            <input type="hidden" name="_method" value="DELETE" />
+
+                            <button class="<?= urlIs('/websites/demo/logout') ? "bg-gray-950/50 text-white": "text-gray-300 hover:bg-white/5 hover:text-white"?> rounded-md px-3 py-2 text-sm font-medium">Log Out</button>
+
+                        </form>
+                    </div>
+                    <?php endif; ?>
                     <!-- Profile dropdown -->
 <!--                    <el-dropdown class="relative ml-3">-->
 <!--                        <button class="relative flex max-w-xs items-center rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">-->
@@ -95,31 +108,47 @@
             <!-- Current: "bg-gray-950/50 text-white", Default: "text-gray-300 hover:bg-white/5 hover:text-white" -->
             <a href="/websites/demo/" class="<?= urlIs('/websites/demo/') ? "bg-gray-950/50 text-white": "text-gray-300 hover:bg-white/5 hover:text-white"?> rounded-md px-3 py-2 text-sm font-medium">Home</a>
             <a href="/websites/demo/about" class="<?= urlIs('/websites/demo/about') ? "bg-gray-950/50 text-white": "text-gray-300 hover:bg-white/5 hover:text-white"?> rounded-md px-3 py-2 text-sm font-medium">About</a>
-            <a href="/websites/demo/notes" class="<?= urlIs('/websites/demo/notes') ? "bg-gray-950/50 text-white": "text-gray-300 hover:bg-white/5 hover:text-white"?> rounded-md px-3 py-2 text-sm font-medium">Notes</a>
+            <?php if ($_SESSION['user'] ?? false) : ?>
+                <a href="/websites/demo/notes" class="<?= urlIs('/websites/demo/notes') ? "bg-gray-950/50 text-white": "text-gray-300 hover:bg-white/5 hover:text-white"?> rounded-md px-3 py-2 text-sm font-medium">Notes</a>
+            <?php endif; ?>
             <a href="/websites/demo/contact" class="<?= urlIs('/websites/demo/contact') ? "bg-gray-950/50 text-white": "text-gray-300 hover:bg-white/5 hover:text-white"?> rounded-md px-3 py-2 text-sm font-medium">Contact</a>
+            <?php if ($_SESSION['user'] ?? false) : ?>
+                <form method="POST" action="/websites/demo/session" class="inline">
+                    <input type="hidden" name="_method" value="DELETE" />
+                    <button class="<?= urlIs('/websites/demo/logout') ? "bg-gray-950/50 text-white": "text-gray-300 hover:bg-white/5 hover:text-white"?> rounded-md px-3 py-2 text-sm font-medium">Log Out</button>
+                </form>
+            <?php endif; ?>
         </div>
         <div class="border-t border-white/10 pt-4 pb-3">
-            <div class="flex items-center px-5">
-                <div class="shrink-0">
-                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" class="size-10 rounded-full outline -outline-offset-1 outline-white/10" />
+            <?php if ($_SESSION['user'] ?? false) : ?>
+                <div class="flex items-center px-5">
+                    <div class="shrink-0">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" class="size-10 rounded-full outline -outline-offset-1 outline-white/10" />
+                    </div>
+                    <div class="ml-3">
+                        <div class="text-base/5 font-medium text-white">Tom Cook</div>
+                        <div class="text-sm font-medium text-gray-400">tom@example.com</div>
+                    </div>
+
+                    <button type="button" class="relative ml-auto shrink-0 rounded-full p-1 text-gray-400 hover:text-white focus:outline-2 focus:outline-offset-2 focus:outline-indigo-500">
+                        <span class="absolute -inset-1.5"></span>
+                        <span class="sr-only">View notifications</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true" class="size-6">
+                            <path d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
                 </div>
-                <div class="ml-3">
-                    <div class="text-base/5 font-medium text-white">Tom Cook</div>
-                    <div class="text-sm font-medium text-gray-400">tom@example.com</div>
+                <div class="mt-3 space-y-1 px-2">
+                    <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-white/5 hover:text-white">Your profile</a>
+                    <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-white/5 hover:text-white">Settings</a>
+                    <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-white/5 hover:text-white">Sign out</a>
                 </div>
-                <button type="button" class="relative ml-auto shrink-0 rounded-full p-1 text-gray-400 hover:text-white focus:outline-2 focus:outline-offset-2 focus:outline-indigo-500">
-                    <span class="absolute -inset-1.5"></span>
-                    <span class="sr-only">View notifications</span>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true" class="size-6">
-                        <path d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
-                </button>
-            </div>
-            <div class="mt-3 space-y-1 px-2">
-                <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-white/5 hover:text-white">Your profile</a>
-                <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-white/5 hover:text-white">Settings</a>
-                <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-white/5 hover:text-white">Sign out</a>
-            </div>
+            <?php else : ?>
+                <div class="mt-3 space-y-1 px-2">
+                    <a href="/websites/demo/register" class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-white/5 hover:text-white">Register</a>
+                    <a href="/websites/demo/login" class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-white/5 hover:text-white">Login</a>
+                </div>
+            <?php endif; ?>
         </div>
     </el-disclosure>
 </nav>

@@ -41,3 +41,24 @@ function view($path, $attributes = [])
 
     require base_path('/views/' . $path);
 }
+
+function login($user)
+{
+    // Mark that user has logged in
+    $_SESSION['user'] = [
+        'email' => $user['email'],
+    ];
+
+    session_regenerate_id(true);
+}
+
+function logout()
+{
+    // Log the user out.
+    $_SESSION = [];
+    session_destroy();
+
+    // Update cookie and set expiration
+    $params = session_get_cookie_params();
+    setcookie('PHPSESSID', '', time() - 3600, $params['path'], $params['domain'], $params['secure'], $params['httponly']);
+}
