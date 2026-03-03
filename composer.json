@@ -1,0 +1,31 @@
+{
+    "name": "might/demo",
+    "authors": [
+        {
+            "name": "AprilEncountered",
+            "email": "smah0070@student.monash.edu"
+        }
+    ],
+    "require": {
+        "illuminate/collections": "^12.53"
+    },
+    "autoload": {
+        "psr-4": {
+            "Core\\": "Core/",
+            "Http\\": "Http/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "require-dev": {
+        "pestphp/pest": "^3.8"
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    }
+}
